@@ -1,26 +1,29 @@
 # plankton-gen
 
-GitHub Pages でそのまま公開できる、静的な `html/css/js` の名前ジェネレーターです。
-リポジトリ名は `plankton-gen` 想定です。
+前句と後句をランダムに組み合わせて名前を生成する、シンプルな静的Webアプリです。
 
-## 構成
+## ファイル構成
 
 - `index.html`: 画面本体
-- `style.css`: レトロ看板っぽい UI
-- `script.js`: 語句データ、ルーレット、追加語句の保存
+- `style.css`: レイアウト、配色、アニメーション
+- `script.js`: 語句データ、抽選処理、履歴、ローカル保存
 
-## GitHub Pages
+## 使い方
 
-1. このディレクトリを GitHub リポジトリに push
-2. GitHub の `Settings > Pages` でデプロイ元ブランチを選択
-3. ルート (`/`) を公開対象に設定
+ブラウザで `index.html` を開くと使えます。
 
-## 語句を増やす
+- `まわす` で名前を生成
+- `語彙と設定` から前句・後句を追加
+- 追加した語彙は `localStorage` に保存
 
-- 固定語句を増やす: `script.js` の `basePrefixes` と `baseSuffixes` に追記
-- ブラウザ上で増やす: 画面の「語句を追加」から入力
+## 語句の追加
 
-## メモ
+固定語句を増やしたい場合は、`script.js` 内の `basePrefixes` と `baseSuffixes` を編集してください。
 
-- 追加語句は `localStorage` に保存されます
-- 理論上の組み合わせ数は `前句数 x 後句数` です
+## 公開
+
+静的ファイルのみで動作するため、そのまま GitHub Pages で公開できます。
+
+## ライセンス
+
+MIT License
