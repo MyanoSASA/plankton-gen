@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>plankton-gen</title>
+  <meta
+    name="description"
+    content="前句と後句をランダムに組み合わせて名称を生成するジェネレーター。"
+  >
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=DotGothic16&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&display=swap"
+    rel="stylesheet"
+  >
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <div class="bubble-layer" aria-hidden="true">
+    <span class="bubble bubble-1"></span>
+    <span class="bubble bubble-2"></span>
+    <span class="bubble bubble-3"></span>
+    <span class="bubble bubble-4"></span>
+    <span class="bubble bubble-5"></span>
+    <span class="bubble bubble-6"></span>
+    <span class="bubble bubble-7"></span>
+    <span class="bubble bubble-8"></span>
+  </div>
+  <main class="shell">
+    <section class="hero">
+      <p class="eyebrow">plankton-gen</p>
+      <h1>plankton-gen</h1>
+      <p class="lead">あなたも微生物になりましょう</p>
+    </section>
+
+    <section class="machine" aria-labelledby="generator-title">
+      <div class="machine-head">
+        <div>
+          <p class="panel-label">Name Roulette</p>
+          <h2 id="generator-title">ルーレット</h2>
+        </div>
+        <div class="head-actions">
+          <button id="openModalButton" class="ghost-button" type="button" aria-haspopup="dialog" aria-controls="settingsModal">語彙と設定</button>
+          <button id="generateButton" class="primary-button" type="button">まわす</button>
+        </div>
+      </div>
+
+      <div class="result-board" aria-live="polite">
+        <div class="slot" id="prefixSlot">
+          <span class="slot-label">前句</span>
+          <div class="slot-window">
+            <strong id="prefixDisplay">プランクトン</strong>
+          </div>
+        </div>
+        <div class="plus">+</div>
+        <div class="slot" id="suffixSlot">
+          <span class="slot-label">後句</span>
+          <div class="slot-window">
+            <strong id="suffixDisplay">後藤</strong>
+          </div>
+        </div>
+      </div>
+
+      <p id="fullNameDisplay" class="full-name">プランクトン後藤</p>
+
+      <div class="stats-grid">
+        <article class="stat-card">
+          <span class="stat-label">前句</span>
+          <strong id="prefixCount">0</strong>
+        </article>
+        <article class="stat-card">
+          <span class="stat-label">後句</span>
+          <strong id="suffixCount">0</strong>
+        </article>
+        <article class="stat-card">
+          <span class="stat-label">理論上の組み合わせ</span>
+          <strong id="comboCount">0</strong>
+        </article>
+      </div>
+    </section>
+
+    <section class="panel history-panel" aria-labelledby="history-title">
+      <div class="panel-head">
+        <div>
+          <p class="panel-label">Recent Names</p>
+          <h2 id="history-title">履歴</h2>
+        </div>
+      </div>
+      <ol id="historyList" class="history-list"></ol>
+    </section>
+
+    <section class="panel policy-panel" aria-labelledby="policy-title">
+      <div class="panel-head">
+        <div>
+          <p class="panel-label">Terms</p>
+          <h2 id="policy-title">利用規約</h2>
+        </div>
+      </div>
+      <ul class="policy-list">
+        <li>このサービスは登録語彙をランダムに組み合わせて名称を生成します。</li>
+        <li>生成結果は自動生成であり、特定の実在人物、名称、団体をけなす意図はありません。</li>
+        <li>生成結果の解釈や利用は利用者自身の責任で行ってください。</li>
+      </ul>
+    </section>
+  </main>
+
+  <div id="settingsModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" hidden>
+    <div id="modalBackdrop" class="modal-backdrop"></div>
+    <section class="modal-panel">
+      <div class="panel-head">
+        <div>
+          <p class="panel-label">Vocabulary & Settings</p>
+          <h2 id="modalTitle">語彙と設定</h2>
+        </div>
+        <button id="closeModalButton" class="ghost-button icon-button" type="button" aria-label="閉じる">×</button>
+      </div>
+
+      <form id="termForm" class="term-form">
+        <label>
+          前句
+          <input id="prefixInput" name="prefix" type="text" maxlength="24" placeholder="例: ハイボール缶">
+        </label>
+        <label>
+          後句
+          <input id="suffixInput" name="suffix" type="text" maxlength="24" placeholder="例: 田所">
+        </label>
+        <div class="form-actions">
+          <button class="secondary-button" type="submit">追加する</button>
+          <button id="resetCustomButton" class="ghost-button" type="button">追加語句をリセット</button>
+        </div>
+        <p class="hint">片方だけでも追加できます。追加語彙はこのブラウザに保存されます。</p>
+      </form>
+
+      <div class="catalog-grid">
+        <section>
+          <h3>前句リスト</h3>
+          <p id="prefixCatalog" class="catalog-list"></p>
+        </section>
+        <section>
+          <h3>後句リスト</h3>
+          <p id="suffixCatalog" class="catalog-list"></p>
+        </section>
+      </div>
+    </section>
+  </div>
+
+  <script src="./script.js"></script>
+</body>
+</html>
