@@ -28,24 +28,16 @@
     <span class="bubble bubble-8"></span>
   </div>
   <main class="shell">
-    <section class="hero">
-      <p class="eyebrow">plankton-gen</p>
-      <h1>plankton-gen</h1>
-      <p class="lead">あなたも微生物になりましょう</p>
-    </section>
-
-    <section class="machine" aria-labelledby="generator-title">
-      <div class="machine-head">
-        <div>
-          <p class="panel-label">Name Roulette</p>
-          <h2 id="generator-title">ルーレット</h2>
-        </div>
-        <div class="head-actions">
-          <button id="openModalButton" class="ghost-button" type="button" aria-haspopup="dialog" aria-controls="settingsModal">語彙と設定</button>
-          <button id="generateButton" class="primary-button" type="button">まわす</button>
-        </div>
+    <header class="hero">
+      <div>
+        <p class="eyebrow">plankton-gen</p>
+        <h1>plankton-gen</h1>
+        <p class="lead">あなたも微生物になりましょう</p>
       </div>
+      <button id="openModalButton" class="ghost-button" type="button" aria-haspopup="dialog" aria-controls="settingsModal">語彙と設定</button>
+    </header>
 
+    <section class="machine" aria-label="名称生成">
       <div class="result-board" aria-live="polite">
         <div class="slot" id="prefixSlot">
           <span class="slot-label">前句</span>
@@ -64,44 +56,16 @@
 
       <p id="fullNameDisplay" class="full-name">プランクトン後藤</p>
 
-      <div class="stats-grid">
-        <article class="stat-card">
-          <span class="stat-label">前句</span>
-          <strong id="prefixCount">0</strong>
-        </article>
-        <article class="stat-card">
-          <span class="stat-label">後句</span>
-          <strong id="suffixCount">0</strong>
-        </article>
-        <article class="stat-card">
-          <span class="stat-label">理論上の組み合わせ</span>
-          <strong id="comboCount">0</strong>
-        </article>
+      <div class="machine-actions">
+        <button id="generateButton" class="primary-button" type="button">まわす</button>
       </div>
     </section>
 
-    <section class="panel history-panel" aria-labelledby="history-title">
-      <div class="panel-head">
-        <div>
-          <p class="panel-label">Recent Names</p>
-          <h2 id="history-title">履歴</h2>
-        </div>
+    <section class="history-panel" aria-labelledby="history-title">
+      <div class="history-head">
+        <h2 id="history-title">履歴</h2>
       </div>
       <ol id="historyList" class="history-list"></ol>
-    </section>
-
-    <section class="panel policy-panel" aria-labelledby="policy-title">
-      <div class="panel-head">
-        <div>
-          <p class="panel-label">Terms</p>
-          <h2 id="policy-title">利用規約</h2>
-        </div>
-      </div>
-      <ul class="policy-list">
-        <li>このサービスは登録語彙をランダムに組み合わせて名称を生成します。</li>
-        <li>生成結果は自動生成であり、特定の実在人物、名称、団体をけなす意図はありません。</li>
-        <li>生成結果の解釈や利用は利用者自身の責任で行ってください。</li>
-      </ul>
     </section>
   </main>
 
@@ -132,6 +96,21 @@
         <p class="hint">片方だけでも追加できます。追加語彙はこのブラウザに保存されます。</p>
       </form>
 
+      <div class="stats-grid">
+        <article class="stat-card">
+          <span class="stat-label">前句</span>
+          <strong id="prefixCount">0</strong>
+        </article>
+        <article class="stat-card">
+          <span class="stat-label">後句</span>
+          <strong id="suffixCount">0</strong>
+        </article>
+        <article class="stat-card">
+          <span class="stat-label">理論上の組み合わせ</span>
+          <strong id="comboCount">0</strong>
+        </article>
+      </div>
+
       <div class="catalog-grid">
         <section>
           <h3>前句リスト</h3>
@@ -142,6 +121,20 @@
           <p id="suffixCatalog" class="catalog-list"></p>
         </section>
       </div>
+
+      <section class="policy-block" aria-labelledby="policy-title">
+        <div class="panel-head">
+          <div>
+            <p class="panel-label">Terms</p>
+            <h3 id="policy-title">利用規約</h3>
+          </div>
+        </div>
+        <ul class="policy-list">
+          <li>このサービスは登録語彙をランダムに組み合わせて名称を生成します。</li>
+          <li>生成結果は自動生成であり、特定の実在人物、名称、団体をけなす意図はありません。</li>
+          <li>生成結果の解釈や利用は利用者自身の責任で行ってください。</li>
+        </ul>
+      </section>
     </section>
   </div>
 

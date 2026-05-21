@@ -1,6 +1,7 @@
 :root {
   --bg-top: #08324b;
   --bg-bottom: #031824;
+  --surface: rgba(5, 27, 40, 0.56);
   --panel: rgba(6, 38, 58, 0.72);
   --panel-strong: rgba(10, 54, 80, 0.86);
   --slot: rgba(219, 245, 255, 0.1);
@@ -67,30 +68,21 @@ body.modal-open {
 .shell {
   position: relative;
   z-index: 1;
-  width: min(920px, calc(100% - 32px));
+  width: min(960px, calc(100% - 32px));
+  min-height: 100vh;
   margin: 0 auto;
-  padding: 28px 0 64px;
-}
-
-.hero,
-.machine,
-.panel,
-.modal-panel {
-  border: 1px solid var(--line);
-  border-radius: 28px;
-  background: var(--panel);
-  backdrop-filter: blur(18px);
-  box-shadow: var(--shadow);
+  padding: 24px 0 32px;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  gap: 24px;
 }
 
 .hero {
-  padding: 24px;
-}
-
-.machine,
-.panel {
-  margin-top: 20px;
-  padding: 24px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+  padding-top: 8px;
 }
 
 .eyebrow,
@@ -143,6 +135,25 @@ h3 {
 .lead {
   max-width: 42rem;
   margin: 14px 0 0;
+}
+
+.machine,
+.modal-panel {
+  border: 1px solid var(--line);
+  border-radius: 28px;
+  backdrop-filter: blur(18px);
+  box-shadow: var(--shadow);
+}
+
+.machine {
+  display: grid;
+  align-content: center;
+  justify-items: center;
+  min-height: min(60vh, 680px);
+  padding: 32px 24px;
+  background: transparent;
+  border: none;
+  box-shadow: none;
 }
 
 .machine-head,
@@ -212,7 +223,7 @@ h3 {
   grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
   gap: 14px;
   align-items: center;
-  margin-top: 24px;
+  width: min(100%, 760px);
 }
 
 .slot,
@@ -226,8 +237,12 @@ h3 {
 .slot {
   position: relative;
   padding: 18px;
-  border-radius: 24px;
+  border-radius: 28px;
   overflow: hidden;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.02)),
+    var(--surface);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
 }
 
 .slot::after {
@@ -261,13 +276,13 @@ h3 {
 }
 
 .plus {
-  font-size: 1.8rem;
+  font-size: 2rem;
   font-weight: 900;
   color: rgba(236, 251, 255, 0.78);
 }
 
 .full-name {
-  margin-top: 20px;
+  margin-top: 24px;
   text-align: center;
   font-size: clamp(2.1rem, 7vw, 4.8rem);
   line-height: 1.02;
@@ -302,8 +317,9 @@ h3 {
 }
 
 .history-panel {
-  max-width: 640px;
+  width: min(100%, 720px);
   margin-inline: auto;
+  padding-top: 6px;
 }
 
 .policy-panel {
@@ -315,14 +331,19 @@ h3 {
   margin: 16px 0 0;
   padding: 0;
   list-style: none;
-  display: grid;
+  display: flex;
   gap: 10px;
+  overflow-x: auto;
+  scrollbar-width: thin;
 }
 
 .history-list li {
+  flex: 0 0 auto;
+  min-width: 180px;
   border-radius: 18px;
   padding: 14px 16px;
   font-weight: 700;
+  background: rgba(255, 255, 255, 0.08);
 }
 
 .policy-list {
@@ -363,6 +384,28 @@ h3 {
   overflow: auto;
   padding: 22px;
   background: var(--panel-strong);
+}
+
+.history-head {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.machine-actions {
+  margin-top: 26px;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
 
 .term-form {
@@ -446,12 +489,12 @@ input:focus {
 @media (max-width: 760px) {
   .shell {
     width: min(100% - 24px, 920px);
+    min-height: auto;
     padding-top: 20px;
+    gap: 20px;
   }
 
   .machine,
-  .panel,
-  .hero,
   .modal-panel {
     border-radius: 24px;
     padding: 20px;
@@ -478,11 +521,20 @@ input:focus {
     grid-template-columns: 1fr;
   }
 
+  .hero {
+    display: grid;
+    gap: 16px;
+  }
+
   .plus {
     text-align: center;
   }
 
   .slot-window {
     min-height: 92px;
+  }
+
+  .history-list li {
+    min-width: 150px;
   }
 }
